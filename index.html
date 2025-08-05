@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مرحباً بك في مفكرة التداول</title>
+    <link href="welcome-style.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- إضافة ملف Firebase -->
+    <script type="module" src="firebase.js"></script>
+</head>
+<body>
+    <div class="welcome-container">
+        <!-- Navigation Header -->
+        <nav class="welcome-nav">
+            <div class="nav-logo">
+                <i class="fas fa-chart-line"></i>
+                <span>مفكرة التداول</span>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-outline" id="login-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    تسجيل الدخول
+                </button>
+                <button class="btn btn-primary" id="register-btn">
+                    <i class="fas fa-user-plus"></i>
+                    إنشاء حساب
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="welcome-content">
+            <div class="hero-section">
+                <div class="hero-text">
+                    <h1>مرحباً بك في رحلة التداول الناجح</h1>
+                    <div class="inspirational-quote" id="main-quote">
+                        <i class="fas fa-quote-right"></i>
+                        اجعل خسارتك دروساً لنجاحك
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="hero-description">
+                        تتبع صفقاتك، حلل أداءك، وتعلم من تجاربك لتصبح متداولاً أفضل
+                    </p>
+                </div>
+            </div>
+
+            <div class="features-preview">
+                <div class="feature-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>تحليل شامل</h3>
+                    <p>احصل على تحليل مفصل لأدائك في التداول</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-notes-medical"></i>
+                    <h3>ملاحظات ذكية</h3>
+                    <p>سجل ملاحظاتك وتعلم من تجاربك</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>تقييم الأداء</h3>
+                    <p>قيم نفسك وحسن من مهاراتك</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Background Graphics -->
+        <div class="bg-graphics">
+            <div class="chart-element chart-1">
+                <canvas id="bgChart1"></canvas>
+            </div>
+            <div class="chart-element chart-2">
+                <canvas id="bgChart2"></canvas>
+            </div>
+            <div class="floating-icons">
+                <i class="fas fa-dollar-sign floating-icon"></i>
+                <i class="fas fa-chart-line floating-icon"></i>
+                <i class="fas fa-coins floating-icon"></i>
+                <i class="fas fa-percentage floating-icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</h2>
+                <span class="close" id="close-login">&times;</span>
+            </div>
+            <form id="login-form" class="auth-form">
+                <div class="form-group">
+                    <label for="login-email">البريد الإلكتروني</label>
+                    <input type="email" id="login-email" placeholder="أدخل بريدك الإلكتروني" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">كلمة المرور</label>
+                    <input type="password" id="login-password" placeholder="أدخل كلمة المرور" required>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="remember-me">
+                    <label for="remember-me">تذكرني</label>
+                </div>
+                <button type="submit" class="btn btn-primary full-width">
+                    <i class="fas fa-sign-in-alt"></i>
+                    دخول
+                </button>
+                <p class="auth-switch">
+                    ليس لديك حساب؟ 
+                    <a href="#" id="switch-to-register">إنشاء حساب جديد</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-plus"></i> إنشاء حساب جديد</h2>
+                <span class="close" id="close-register">&times;</span>
+            </div>
+            <form id="register-form" class="auth-form">
+                <div class="form-group">
+                    <label for="register-name">الاسم الكامل</label>
+                    <input type="text" id="register-name" placeholder="أدخل اسمك الكامل" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">البريد الإلكتروني</label>
+                    <input type="email" id="register-email" placeholder="أدخل بريدك الإلكتروني" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">كلمة المرور</label>
+                    <input type="password" id="register-password" placeholder="أدخل كلمة مرور قوية" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">تأكيد كلمة المرور</label>
+                    <input type="password" id="confirm-password" placeholder="أعد إدخال كلمة المرور" required>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="agree-terms" required>
+                    <label for="agree-terms">أوافق على شروط الاستخدام وسياسة الخصوصية</label>
+                </div>
+                <button type="submit" class="btn btn-primary full-width">
+                    <i class="fas fa-user-plus"></i>
+                    إنشاء حساب
+                </button>
+                <p class="auth-switch">
+                    لديك حساب بالفعل؟ 
+                    <a href="#" id="switch-to-login">تسجيل الدخول</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script type="module" src="welcome-script.js"></script>
+</body>
+</html>
